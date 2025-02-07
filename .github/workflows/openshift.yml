@@ -146,8 +146,8 @@ jobs:
         
     - name: Build the Docker image
       run: |
-        docker build -t ghcr.io/${{ github.repository_owner }}/banking-portal-api:${{ github.sha }} .
-        docker tag ghcr.io/${{ github.repository_owner }}/banking-portal-api:${{ github.sha }} ghcr.io/${{ github.repository_owner }}/banking-portal-api:latest
+        docker build -t ghcr.io/${{ github.repository_owner | toLowerCase}}/banking-portal-api:${{ github.sha }} .
+        docker tag ghcr.io/${{ github.repository_owner | toLowerCase}}/banking-portal-api:${{ github.sha }} ghcr.io/${{ github.repository_owner | toLowerCase }}/banking-portal-api:latest
 
     - name: Push the Docker image
       run: |
@@ -214,7 +214,10 @@ jobs:
         image: ${{ steps.push-image.outputs.registry-path }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
-
+        
+    - name: Echo outputs
+      run: |
+        echo "${{ toJSON(steps.push.outputs) }}"
     - name: Print application URL
       env:
         ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
