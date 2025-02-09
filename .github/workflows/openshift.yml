@@ -220,7 +220,7 @@ jobs:
     #     port: ${{ env.APP_PORT }}
     - name: Deploy
       run: |
-        oc login --server=https://api.rm3.7wse.p1.openshiftapps.com:6443 --token=eyJhbGciOiJSUzI1NiIsImtpZCI6IncxeEhMTlBXOFdpRzE0TElpNTNQSEJXc0QwWlhKQWl5YjgyMEVzMlZGTDgifQ.eyJhdWQiOlsiaHR0cHM6Ly9vaWRjLm9wMS5vcGVuc2hpZnRhcHBzLmNvbS8yZmVnZ3FtYmJzcjZqM2hjbm5jZ3M4bnQ3Yjc4dTdvMSJdLCJleHAiOjE3Mzg5NjQ3NDAsImlhdCI6MTczODk2MTE0MCwiaXNzIjoiaHR0cHM6Ly9vaWRjLm9wMS5vcGVuc2hpZnRhcHBzLmNvbS8yZmVnZ3FtYmJzcjZqM2hjbm5jZ3M4bnQ3Yjc4dTdvMSIsImp0aSI6IjQ4Mzk5OTdjLWE4NWMtNDI2Yy1hMzA5LTJkNjA0MTYyZWFkNyIsImt1YmVybmV0ZXMuaW8iOnsibmFtZXNwYWNlIjoiYmFua2luZy1hZG1pbi1jcnQtZGV2Iiwic2VydmljZWFjY291bnQiOnsibmFtZSI6ImRlcGxveWVyIiwidWlkIjoiZTFkYmRiZmYtZjI0OS00MTFiLTlmZmEtYjM4ZDI2OGE4MWZjIn19LCJuYmYiOjE3Mzg5NjExNDAsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3
+        oc login --insecure-skip-tls-verify --server=https://api.rm3.7wse.p1.openshiftapps.com:6443 --token=eyJhbGciOiJSUzI1NiIsImtpZCI6IncxeEhMTlBXOFdpRzE0TElpNTNQSEJXc0QwWlhKQWl5YjgyMEVzMlZGTDgifQ.eyJhdWQiOlsiaHR0cHM6Ly9vaWRjLm9wMS5vcGVuc2hpZnRhcHBzLmNvbS8yZmVnZ3FtYmJzcjZqM2hjbm5jZ3M4bnQ3Yjc4dTdvMSJdLCJleHAiOjE3Mzg5NjQ3NDAsImlhdCI6MTczODk2MTE0MCwiaXNzIjoiaHR0cHM6Ly9vaWRjLm9wMS5vcGVuc2hpZnRhcHBzLmNvbS8yZmVnZ3FtYmJzcjZqM2hjbm5jZ3M4bnQ3Yjc4dTdvMSIsImp0aSI6IjQ4Mzk5OTdjLWE4NWMtNDI2Yy1hMzA5LTJkNjA0MTYyZWFkNyIsImt1YmVybmV0ZXMuaW8iOnsibmFtZXNwYWNlIjoiYmFua2luZy1hZG1pbi1jcnQtZGV2Iiwic2VydmljZWFjY291bnQiOnsibmFtZSI6ImRlcGxveWVyIiwidWlkIjoiZTFkYmRiZmYtZjI0OS00MTFiLTlmZmEtYjM4ZDI2OGE4MWZjIn19LCJuYmYiOjE3Mzg5NjExNDAsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3
         oc project banking-admin-crt-dev
         oc new-app --name=banking-portal-api --docker-image=ghcr.io/${{ env.LOWERCASE_OWNER }}/banking-portal-api:latest
         oc status
