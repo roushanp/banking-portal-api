@@ -223,9 +223,9 @@ jobs:
         oc login --insecure-skip-tls-verify --server=https://api.rm3.7wse.p1.openshiftapps.com:6443 --token=eyJhbGciOiJSUzI1NiIsImtpZCI6IncxeEhMTlBXOFdpRzE0TElpNTNQSEJXc0QwWlhKQWl5YjgyMEVzMlZGTDgifQ.eyJhdWQiOlsiaHR0cHM6Ly9vaWRjLm9wMS5vcGVuc2hpZnRhcHBzLmNvbS8yZmVnZ3FtYmJzcjZqM2hjbm5jZ3M4bnQ3Yjc4dTdvMSJdLCJleHAiOjE3MzkxNzUxMTgsImlhdCI6MTczOTE3MTUxOCwiaXNzIjoiaHR0cHM6Ly9vaWRjLm9wMS5vcGVuc2hpZnRhcHBzLmNvbS8yZmVnZ3FtYmJzcjZqM2hjbm5jZ3M4bnQ3Yjc4dTdvMSIsImp0aSI6ImM2ZTQzZmQ1LTBmM2ItNDI2Mi04NDdlLTI3ZjY3M2MzYzI3YiIsImt1YmVybmV0ZXMuaW8iOnsibmFtZXNwYWNlIjoiYmFua2luZy1hZG1pbi1jcnQtZGV2Iiwic2VydmljZWFjY291bnQiOnsibmFtZSI6ImRlcGxveWVyIiwidWlkIjoiZTFkYmRiZmYtZjI0OS00MTFiLTlmZmEtYjM4ZDI2OGE4MWZjIn19LCJuYmYiOjE3MzkxNzE1MTgsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpiYW5raW5nLWFkbWluLWNydC1kZXY6ZGVwbG95ZXIifQ.vvsQ-Z3TJ0_CEVejHrwOv2OgkY_uc8p_crLdj3glRbLzbpaqryyEIOnfc56I5VQXgPEHDgDN-Yb-SvhnnrWBa5b4YWr3CUjZK5ms8sjYDocyeYy0a5QC0LoKnW1TKX9NQPU1YDHyGaI84qviPL6iIU717blkUwah3vL8vw6sZzMCDOrH9jLfjRBqchR3zWjWw7gOXR1ojmvy7QSsdpIUL-0JZVCn8wgOztLClo6iifEFsXyTrxpdXS4Mdz8aX_9kpk6cc_5B9BO8Qja70kiU8Sz7PGJQiZRo_WHVIBM_8MZIAx5pwrrbGeD1Tt5w22B8O9JMR0EocYkMIU7D5oTdgKWe7PB_e_t1zGHlMQkieVDJ07fMuuLwNKM3uYj2YkfqokTqJdqBy7joDUQNqFyJ6f3nK9Ohlt0LSiPBX9AhCvAeJO_V8O5kBMChnyWmp14-A8sOlxoplMDJBxJtumqrHfSu_7hRKio_tguc3p0MScW560Xsth0FTMjG43JtwWwFu7cwTENU-oIiSna_Do0O4_k3G6erjB0XHiHDlasdRXWZrATNwMS0bbgJ6ZyrTml7T-C6T61YNs45yvKwEplYQ6PRxH1sIkf7TeKLT1h6gPNImMTGbGY6h5t9pNlMPNyP-BSI_ec0EHU0AVJhAWriMRgaXYC6oo_6eYGUIXNgpZ0
         oc get projects
         oc project banking-admin-crt-dev
-        oc new-app --name=banking-portal-api-v2 --docker-image=ghcr.io/${{ env.LOWERCASE_OWNER }}/banking-portal-api:latest
+        oc new-app --name=banking-portal-api-v3 --docker-image=ghcr.io/${{ env.LOWERCASE_OWNER }}/banking-portal-api:${{ github.sha }}
+        oc expose service/banking-portal-api-v3
         oc status --suggest
-        oc expose service/banking-portal-api-v2
     - name: Echo outputs
       run: |
         echo "${{ toJSON(steps.push.outputs) }}"
