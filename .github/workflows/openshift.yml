@@ -225,6 +225,7 @@ jobs:
         oc project banking-admin-crt-dev
         oc new-app --name=banking-portal-api-v2 --docker-image=ghcr.io/${{ env.LOWERCASE_OWNER }}/banking-portal-api:latest
         oc status --suggest
+        oc expose service/banking-portal-api-v2
     - name: Echo outputs
       run: |
         echo "${{ toJSON(steps.push.outputs) }}"
